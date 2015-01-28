@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -48,14 +47,22 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem "autoprefixer-rails", '~> 5.0.0.0'
+
+# User Management Gem
 gem 'devise', '~> 3.3.0'
 gem 'cancancan', '~> 1.9.2'
-gem "autoprefixer-rails"
+
+# Uploader File Gem
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog'
+
+# UI Gem
+gem 'bootstrap-sass', '~> 3.3.3'
 gem 'haml'
 gem 'haml-rails'
-gem 'fog'
 gem 'kaminari'
+
 
 
