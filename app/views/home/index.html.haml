@@ -9,11 +9,11 @@
           - if @search.nil?
             = "#ALL"
           - else
-            = "#{@search.inspect}"
+            = "#{@search}"
     - if @allThought.nil?
       %h3
         No such hash
-        = "{@search}"
+        = "#{@search}"
         available. Create one now?
     - else
       - @allThought.each do |t|
@@ -34,6 +34,7 @@
       %h5
         %b #All you got now:
       - @allTags.each do |t|
-        .row
-          = t
+        = form_tag(controller: "home", action: "search" ,method: "POST", class: "form-inline") do
+          .row
+            = submit_tag t, class: "btn btn-default"
 
