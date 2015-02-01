@@ -15,6 +15,8 @@
         No such hash
         = "#{@search}"
         available. Create one now?
+    -elsif @allThought.blank?
+      %h3 It's lonely here. Let's give me some thought!
     - else
       - @allThought.each do |t|
         .container.col-md-12
@@ -55,6 +57,7 @@
     var content = $(r).parent().parent().prev().html();
 
     console.log(content);
-    $(r).parent().parent().prev().remove();
+    $(r).parent().parent().prev().html("<div>hola</div>");
     console.log(id);
+    return false;
   }
