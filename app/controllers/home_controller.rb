@@ -17,9 +17,9 @@ class HomeController < ApplicationController
     end
 
     @thought ||= Thought.new
-
-    tmp = HashTag.find_by(hash_tag: "#FUCK")
-    @allThought = tmp.thoughts
+    @search = params["search"]
+    tmp = HashTag.find_by(hash_tag: @search)
+    @allThought = tmp.thoughts unless tmp.nil?
 
     @allTags = getUserTags! current_user.id
 

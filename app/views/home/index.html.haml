@@ -5,14 +5,24 @@
         = render "thoughts/form"
     .thought-legend
       %h5
-        %b #RUN
-    - @allThought.each do |t|
-      .container.col-md-12
-        .row.thoughts
-          .thought-content
-            = t.content
-          .thought-action
-            = t.updated_at.strftime("%d %B %I:%M %p")
+        %b
+          - if @search.nil?
+            = "#ALL"
+          - else
+            = "#{@search.inspect}"
+    - if @allThought.nil?
+      %h3
+        No such hash
+        = "{@search}"
+        available. Create one now?
+    - else
+      - @allThought.each do |t|
+        .container.col-md-12
+          .row.thoughts
+            .thought-content
+              = t.content
+            .thought-action
+              = t.updated_at.strftime("%d %B %I:%M %p")
 
   .col-md-2.hash-wrapper
     .row
