@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :hash_tags
+
   resources :thoughts
 
   devise_for :users
