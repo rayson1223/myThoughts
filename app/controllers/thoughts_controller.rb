@@ -44,7 +44,7 @@ class ThoughtsController < ApplicationController
           end
         end
         flash.now[:success] = 'Your Thought was successfully created.'
-        format.html { redirect_to root_path}
+        format.html { redirect_to root_path, notice: 'Your Thought was successfully created.'}
         format.json { render :show, status: :created, location: @thought }
       else
         format.html { render :new }
