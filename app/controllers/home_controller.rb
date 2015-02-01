@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       redirect_to new_user_session_path
     end
     @thought ||= Thought.new
-    @allThought = Thought.where(user_id: current_user.id)
+    @allThought = Thought.where(user_id: current_user.id).order("updated_at DESC")
 
     @allTags = getUserTags! current_user.id
   end
