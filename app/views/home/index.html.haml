@@ -43,12 +43,19 @@
     .container.col-md-12
       %h5
         %b #ALL you got now:
+
       - @allTags.each do |t|
         = form_tag(controller: "home", action: "search" ,method: "POST", class: "form-inline") do
-          .row
-            = submit_tag t, class: "btn btn-default pull-left"
-            %span.badge.pull-right
-              = HashTag.find_by(hash_tag: t).thoughts.count.inspect
+          - if @search == t
+            .row.active
+              = submit_tag t, class: "btn btn-default pull-left"
+              %span.badge.pull-right
+                = HashTag.find_by(hash_tag: t).thoughts.count.inspect
+          -else
+            .row
+              = submit_tag t, class: "btn btn-default pull-left"
+              %span.badge.pull-right
+                = HashTag.find_by(hash_tag: t).thoughts.count.inspect
 
 :javascript
   function editThought(r){
