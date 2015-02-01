@@ -41,6 +41,8 @@ class ThoughtsController < ApplicationController
         allTag.each do |tag|
           if (!TagExist?(tag))
             @thought.hash_tags.create(hash_tag: tag)
+          else
+            @thought.thought_tags.create(hash_tag_id: HashTag.find_by(hash_tag: tag).id)
           end
         end
         flash.now[:success] = 'Your Thought was successfully created.'
