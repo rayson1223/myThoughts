@@ -26,8 +26,11 @@
                 = t.updated_at.strftime("%d %B %I:%M %p")
 
               .col-md-3
-                %span.glyphicon.glyphicon-edit{ "aria-hidden" => "true" }
-                %span.glyphicon.glyphicon-trash{ "aria-hidden" => "true" }
+                %a{ href: "", "data-id" => "#{t.id}", onclick: "editThought(this)" }
+                  %span.glyphicon.glyphicon-edit{ "aria-hidden" => "true" }
+
+                %a{ href: "/thoughts/#{t.id}", "data-method" => "delete" }
+                  %span.glyphicon.glyphicon-trash{ "aria-hidden" => "true"}
 
   .col-md-2.hash-wrapper
     .row
@@ -45,3 +48,13 @@
             %span.badge.pull-right
               = HashTag.find_by(hash_tag: t).thoughts.count.inspect
 
+:javascript
+  function editThought(r){
+
+    var id = $(r).data("id");
+    var content = $(r).parent().parent().prev().html();
+
+    console.log(content);
+    $(r).parent().parent().prev().remove();
+    console.log(id);
+  }
