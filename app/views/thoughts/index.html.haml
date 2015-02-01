@@ -1,0 +1,19 @@
+%h1 Listing thoughts
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @thoughts.each do |thought|
+      %tr
+        %td= link_to 'Show', thought
+        %td= link_to 'Edit', edit_thought_path(thought)
+        %td= link_to 'Destroy', thought, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Thought', new_thought_path
