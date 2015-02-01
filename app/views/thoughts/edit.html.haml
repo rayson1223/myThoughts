@@ -1,7 +1,6 @@
-%h1 Editing thought
-
-= render 'form'
-
-= link_to 'Show', @thought
-\|
-= link_to 'Back', thoughts_path
+.row
+  .col-md-offset-1.col-md-8.thought-wrapper
+    .page-header
+      %h1 Editing Your Thought Now
+    .form.thought-form
+      = render 'form'

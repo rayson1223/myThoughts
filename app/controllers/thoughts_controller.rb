@@ -58,9 +58,30 @@ class ThoughtsController < ApplicationController
   # PATCH/PUT /thoughts/1
   # PATCH/PUT /thoughts/1.json
   def update
+    logger.debug ">>>>>>> #{thought_params.inspect}"
+    @thought.thought_tags.each do |t|
+      t.destroy
+    end
+    temp = thought_params["content"]
+    s = temp.split(" ")
+    allTag = Set.new
+    s.each do |tag|
+      if tag.start_with?('#')
+        allTag.add(tag)
+      end
+    end
+
     respond_to do |format|
       if @thought.update(thought_params)
-        format.html { redirect_to @thought, notice: 'Thought was successfully updated.' }
+        allTag = allTag.to_a
+        allTag.each do |tag|
+          if (!TagExist?(tag))
+            @thought.hash_tags.create(hash_tag: tag)
+          else
+            @thought.thought_tags.create(hash_tag_id: HashTag.find_by(hash_tag: tag).id)
+          end
+        end
+        format.html { redirect_to root_path, notice: 'Your Thought was successfully updated.' }
         format.json { render :show, status: :ok, location: @thought }
       else
         format.html { render :edit }

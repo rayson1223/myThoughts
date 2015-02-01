@@ -21,7 +21,7 @@ class HomeController < ApplicationController
     @search = params["search"] unless params["search"].nil?
     @search = params["commit"] unless params["commit"].nil?
     tmp = HashTag.find_by(hash_tag: @search)
-    @allThought = tmp.thoughts unless tmp.nil?
+    @allThought = tmp.thoughts.order("updated_at DESC") unless tmp.nil?
 
     @allTags = getUserTags! current_user.id
 

@@ -28,7 +28,7 @@
                 = t.updated_at.strftime("%d %B %I:%M %p")
 
               .col-md-3
-                %a{ href: "", "data-id" => "#{t.id}", onclick: "editThought(this)" }
+                %a{ href: "/thoughts/#{t.id}/edit", "data-id" => "#{t.id}" }
                   %span.glyphicon.glyphicon-edit{ "aria-hidden" => "true" }
 
                 %a{ href: "/thoughts/#{t.id}", "data-method" => "delete" }
