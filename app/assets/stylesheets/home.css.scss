@@ -32,6 +32,11 @@ body{
 .hash-wrapper{
   background-color: white;
   text-align: center;
+  .hash-form{
+    .form-group{
+      padding: 20px 10px 0px 0;
+    }
+  }
 }
 
 .thought-form{
