@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201152859) do
+ActiveRecord::Schema.define(version: 20150201154444) do
 
   create_table "hash_tags", force: true do |t|
     t.string   "hash",       default: "", null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20150201152859) do
   end
 
   add_index "hash_tags", ["hash"], name: "index_hash_tags_on_hash", unique: true
+
+  create_table "thought_tags", force: true do |t|
+    t.integer  "thought_id"
+    t.integer  "hash_tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "thought_tags", ["hash_tag_id"], name: "index_thought_tags_on_hash_tag_id"
+  add_index "thought_tags", ["thought_id"], name: "index_thought_tags_on_thought_id"
 
   create_table "thoughts", force: true do |t|
     t.integer  "user_id"
