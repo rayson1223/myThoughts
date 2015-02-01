@@ -15,4 +15,8 @@
             = t.updated_at.strftime("%d %B %I:%M %p")
 
   .col-md-2.hash-wrapper
+    .container.col-md-12
+      - @allTags.each do |t|
+        .row
+          = t
 

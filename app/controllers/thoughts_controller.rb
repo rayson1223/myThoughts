@@ -1,6 +1,6 @@
 class ThoughtsController < ApplicationController
   before_action :set_thought, only: [:show, :edit, :update, :destroy]
-
+  include ThoughtsHelper
   # GET /thoughts
   # GET /thoughts.json
   def index
@@ -25,10 +25,26 @@ class ThoughtsController < ApplicationController
   # POST /thoughts.json
   def create
     @thought = Thought.new(thought_params)
+    @thought.user_id = current_user.id
+    temp = @thought.content
+    s = temp.split(" ")
+    allTag = Set.new
+    s.each do |tag|
+      if tag.start_with?('#')
+        allTag.add(tag)
+      end
+    end
 
     respond_to do |format|
       if @thought.save
-        format.html { redirect_to @thought, notice: 'Thought was successfully created.' }
+        allTag = allTag.to_a
+        allTag.each do |tag|
+          if (!TagExist?(tag))
+            @thought.hash_tags.create(hash_tag: tag)
+          end
+        end
+        flash.now[:success] = 'Your Thought was successfully created.'
+        format.html { redirect_to root_path}
         format.json { render :show, status: :created, location: @thought }
       else
         format.html { render :new }
@@ -69,6 +85,6 @@ class ThoughtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thought_params
-      params[:thought]
+      params.require(:thought).permit(:content)
     end
 end
