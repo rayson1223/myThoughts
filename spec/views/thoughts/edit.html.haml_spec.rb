@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "thoughts/edit", :type => :view do
   before(:each) do
-    @thought = assign(:thought, Thought.create!())
+    @thought = assign(:thought, FactoryGirl.create(:thought))
   end
 
   it "renders the edit thought form" do
