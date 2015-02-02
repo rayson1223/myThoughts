@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-RSpec.describe "Devise Authentication: ", :type => :request do
+feature "Devise Authentication: " do
 
     subject { page }
 
-    describe "Signup page" do
+    scenario "Signup page" do
         before { visit new_user_registration_path }
 
         let(:submit) { "Create my account" }
@@ -47,7 +47,7 @@ RSpec.describe "Devise Authentication: ", :type => :request do
     end
 
 
-    describe "Signin page" do
+    scenario "Signin page" do
 
         before { visit new_user_session_path }
 
