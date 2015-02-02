@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "hash_tags/edit", :type => :view do
   before(:each) do
-    @hash_tag = assign(:hash_tag, HashTag.create!())
+    @hash_tag = assign(:hash_tag, FactoryGirl.create(:hash_tag))
   end
 
   it "renders the edit hash_tag form" do
