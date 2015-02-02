@@ -4,10 +4,6 @@ RSpec.describe User, :type => :model do
 
   describe '#new' do
 
-    before :each do
-      @user = FactoryGirl.build(:user)
-    end
-
     it "has a valid factory" do
       expect(FactoryGirl.create(:user)).to be_valid
     end
