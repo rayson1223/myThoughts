@@ -69,6 +69,6 @@ class HashTagsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hash_tag_params
-      params[:hash_tag]
+      params.require(:hash_tag).permit(:hash_tag)
     end
 end

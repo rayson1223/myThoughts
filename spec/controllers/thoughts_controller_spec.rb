@@ -24,17 +24,17 @@ RSpec.describe ThoughtsController, :type => :controller do
   # Thought. As you add validations to Thought, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:thought)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+     { content: nil }
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # ThoughtsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { FactoryGirl.attributes_for(:user) }
 
   describe "GET index" do
     it "assigns all thoughts as @thoughts" do
@@ -103,7 +103,7 @@ RSpec.describe ThoughtsController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:thought)
       }
 
       it "updates the requested thought" do
