@@ -92,7 +92,7 @@ RSpec.describe HashTagsController, :type => :controller do
         hash_tag = HashTag.create! valid_attributes
         put :update, {:id => hash_tag.to_param, :hash_tag => new_attributes}, valid_session
         hash_tag.reload
-        # skip("Add assertions for updated state")
+        # gskip("Add assertions for updated state")
       end
 
       it "assigns the requested hash_tag as @hash_tag" do
